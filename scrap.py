@@ -34,9 +34,8 @@ for img in img_tags:
 
     img_url = urljoin(url, img_url)
 
-    # ---------------------------
-    # 🚫 SKIP DUPLICATES
-    # ---------------------------
+    # ------SKIP DUPLICATES ---------------------
+
     if img_url in downloaded:
         print(f"Skipping duplicate: {img_url}")
         continue
@@ -44,9 +43,8 @@ for img in img_tags:
     downloaded.add(img_url)
 
     try:
-        # ---------------------------
-        # 🟡 SVG HANDLING
-        # ---------------------------
+        # -------🟡 SVG HANDLING --------------------
+
         if ".svg" in img_url.lower():
             svg_data = requests.get(img_url, headers=headers).content
 
@@ -62,9 +60,8 @@ for img in img_tags:
             print(f"Saved SVG: {save_path}")
             continue
 
-        # ---------------------------
-        # 🟢 OTHER IMAGES
-        # ---------------------------
+# ---------🟢 OTHER IMAGes----------------------
+
         img_data = requests.get(img_url, headers=headers).content
 
         file_name = os.path.basename(urlparse(img_url).path)
